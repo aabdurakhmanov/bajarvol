@@ -1,0 +1,43 @@
+# users/views.py
+from django.contrib.auth.tokens import default_token_generator
+from django.http import JsonResponse
+from rest_framework import generics, permissions
+from .models import CustomUser
+from .serializers import UserSerializer
+
+
+from rest_framework_simplejwt.views import TokenObtainPairView
+from .serializers import CustomTokenObtainPairSerializer
+
+
+class UserRegisterView(generics.CreateAPIView):
+    queryset = CustomUser.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [permissions.AllowAny]
+
+class UserDetailView(generics.RetrieveUpdateAPIView):
+    queryset = CustomUser.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_object(self):
+        return self.request.user
+
+
+
+def confirm_email(request, uid, token):
+    try:
+        user = CustomUser.objects.get(pk=uid)
+    except CustomUser.DoesNotExist:
+        return JsonResponse({'detail': 'Foydalanuvchi topilmadi.'}, status=404)
+
+    if default_token_generator.check_token(user, token):
+        user.is_email_verified = True
+        user.save()
+        return JsonResponse({'detail': 'Email muvaffaqiyatli tasdiqlandi.'})
+    else:
+        return JsonResponse({'detail': 'Token noto‘g‘ri yoki eskirgan.'}, status=400)
+
+
+class CustomTokenObtainPairView(TokenObtainPairView):
+    serializer_class = CustomTokenObtainPairSerializer
