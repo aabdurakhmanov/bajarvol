@@ -36,7 +36,7 @@ ALLOWED_HOSTS = []
 # Google’dan olgan kalitlar
 RECAPTCHA_PUBLIC_KEY = '6LdnxHgrAAAAAKWpN2rnC94KQCeY4jD0zbAO1ZSS'
 RECAPTCHA_PRIVATE_KEY = '6LdnxHgrAAAAADv-tY3JEwu2XPvVVGDr8cCrLVHT'
-
+RECAPTCHA_REQUIRED_SCORE = 0.85
 RECAPTCHA_TESTING = True
 
 INSTALLED_APPS = [
@@ -48,7 +48,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #apps
     'users.apps.UsersConfig',
-    'captcha',
 ]
 
 MIDDLEWARE = [
