@@ -32,6 +32,13 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+
+# Google’dan olgan kalitlar
+RECAPTCHA_PUBLIC_KEY = '6LdnxHgrAAAAAKWpN2rnC94KQCeY4jD0zbAO1ZSS'
+RECAPTCHA_PRIVATE_KEY = '6LdnxHgrAAAAADv-tY3JEwu2XPvVVGDr8cCrLVHT'
+
+RECAPTCHA_TESTING = True
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -41,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #apps
     'users.apps.UsersConfig',
+    'captcha',
 ]
 
 MIDDLEWARE = [
@@ -139,7 +147,6 @@ DOMAIN = '127.0.0.1:8000'  # local testda shunday
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 DEFAULT_FROM_EMAIL = 'noreply@example.com'
 DOMAIN = 'localhost:8000'  # agar deploy bo'lsa, o'zgartirasan
-
 
 
 

@@ -1,4 +1,6 @@
 # users/views.py
+from django.shortcuts import render, redirect
+from .forms import RegisterForm
 from django.contrib.auth.tokens import default_token_generator
 from django.http import JsonResponse
 from rest_framework import generics, permissions
@@ -41,3 +43,17 @@ def confirm_email(request, uid, token):
 
 class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
+
+
+def register_view(request):
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.set_password(form.cleaned_data['password'])
+            user.is_active = True  # SMTP bo'lmasa, email tasdiqlashni vaqtincha o‘tkazib turamiz
+            user.save()
+            return redirect('login')
+    else:
+        form = RegisterForm()
+    return render(request, 'register.html', {'form': form})
