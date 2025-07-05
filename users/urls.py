@@ -1,5 +1,6 @@
 # users/urls.py
 from django.urls import path
+from .views import contact_view
 from .views import UserRegisterView, UserDetailView, confirm_email, CustomTokenObtainPairView
 
 urlpatterns = [
@@ -7,4 +8,5 @@ urlpatterns = [
     path('me/', UserDetailView.as_view(), name='user-detail'),
     path('confirm-email/<int:uid>/<str:token>/', confirm_email, name='confirm-email'),
     path('login/', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('contact/', contact_view, name='contact'),
 ]
