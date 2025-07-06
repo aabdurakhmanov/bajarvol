@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #apps
     'users.apps.UsersConfig',
-    'captcha'
+    'captcha',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [

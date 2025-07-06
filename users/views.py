@@ -35,6 +35,7 @@ def confirm_email(request, uid, token):
 
     if default_token_generator.check_token(user, token):
         user.is_email_verified = True
+        user.is_active = True  # <<< MUHIM QATOR!
         user.save()
         return JsonResponse({'detail': 'Email muvaffaqiyatli tasdiqlandi.'})
     else:
