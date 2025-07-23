@@ -36,6 +36,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #apps
     'users.apps.UsersConfig',
+    'tasks.apps.TasksConfig',
+
     'captcha',
     'django_extensions',
     'rest_framework',
@@ -62,6 +64,11 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',  # faqat login qilingan foydalanuvchilar uchun
     ]
 }
+
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+]
 
 
 from datetime import timedelta
