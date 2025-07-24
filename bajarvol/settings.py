@@ -27,6 +27,8 @@ RECAPTCHA_PRIVATE_KEY = '6LdnxHgrAAAAADv-tY3JEwu2XPvVVGDr8cCrLVHT'
 RECAPTCHA_REQUIRED_SCORE = 0.85
 RECAPTCHA_TESTING = True
 
+SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
