@@ -43,6 +43,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
 
+    'drf_spectacular',
+    'drf_spectacular_sidecar',
+
 ]
 
 MIDDLEWARE = [
@@ -56,9 +59,10 @@ MIDDLEWARE = [
 ]
 
 REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
     'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',  # JWT ishlasin
         'rest_framework.authentication.SessionAuthentication',  # login orqali
-        'rest_framework.authentication.TokenAuthentication',    # API token orqali
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',  # faqat login qilingan foydalanuvchilar uchun
