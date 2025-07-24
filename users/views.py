@@ -63,6 +63,5 @@ def register_view(request):
 def contact_view(request):
     form = RegisterForm(request.POST or None)
     if request.method == "POST" and form.is_valid():
-        # Ma'lumotlar to'g'ri va captcha ham ishladi!
         return render(request, "users/success.html", {})
     return render(request, "users/contact.html", {"form": form})
