@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'tasks.apps.TasksConfig',
 
-    'captcha',
+    'django_recaptcha',  # ✅ faqat shu bo‘lsa bo‘ladi
     'django_extensions',
     'rest_framework',
     'rest_framework_simplejwt',

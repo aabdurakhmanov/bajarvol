@@ -24,7 +24,6 @@ from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, Sp
 urlpatterns = [
     path('admin/', admin.site.urls),
     #captcha
-    path('captcha/', include('captcha.urls')),
     #apps
     path('api/users/', include('users.urls')),
     path('api/tasks/', include('tasks.urls')),

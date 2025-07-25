@@ -61,7 +61,12 @@ def register_view(request):
 
 
 def contact_view(request):
-    form = RegisterForm(request.POST or None)
-    if request.method == "POST" and form.is_valid():
-        return render(request, "users/success.html", {})
+    if request.method == "POST":
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            # Ma'lumotni saqlash yoki boshqa amallar
+            return render(request, "users/success.html", {})
+    else:
+        form = RegisterForm()
+
     return render(request, "users/contact.html", {"form": form})
