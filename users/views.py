@@ -1,12 +1,14 @@
 # users/views.py
 from django.shortcuts import render, redirect
-from .forms import RegisterForm
+from .forms import RegisterForm, CustomLoginForm
+from django.views.generic import FormView
+from django.contrib.auth import login
 from django.contrib.auth.tokens import default_token_generator
 from django.http import JsonResponse
 from rest_framework import generics, permissions
 from .models import CustomUser
 from .serializers import UserSerializer
-
+from rest_framework_simplejwt.tokens import RefreshToken
 
 from rest_framework_simplejwt.views import TokenObtainPairView
 from .serializers import CustomTokenObtainPairSerializer
@@ -57,16 +59,21 @@ def register_view(request):
             return redirect('login')
     else:
         form = RegisterForm()
-    return render(request, 'register.html', {'form': form})
+    return render(request, 'users/register.html', {'form': form})
 
 
-def contact_view(request):
-    if request.method == "POST":
-        form = RegisterForm(request.POST)
-        if form.is_valid():
-            # Ma'lumotni saqlash yoki boshqa amallar
-            return render(request, "users/success.html", {})
-    else:
-        form = RegisterForm()
 
-    return render(request, "users/contact.html", {"form": form})
+class CustomLoginView(FormView):
+    template_name = 'users/login.html'
+    form_class = CustomLoginForm
+
+    def form_valid(self, form):
+        user = form.cleaned_data['user']
+        login(self.request, user)
+
+        # Token yaratish
+        refresh = RefreshToken.for_user(user)
+        response = redirect('user-detail')  # profile page nomi
+        response.set_cookie('access', str(refresh.access_token), httponly=True)
+        response.set_cookie('refresh', str(refresh), httponly=True)
+        return response

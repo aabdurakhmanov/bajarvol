@@ -1,0 +1,8 @@
+<h2>Login</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Kirish</button>
+</form>
+{% load static %}
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>

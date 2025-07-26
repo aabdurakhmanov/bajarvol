@@ -1,0 +1,9 @@
+<!-- templates/users/register.html -->
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Ro'yxatdan o'tish</button>
+</form>
+
+<!-- reCAPTCHA JS kodi -->
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
