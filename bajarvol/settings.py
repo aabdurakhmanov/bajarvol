@@ -160,7 +160,7 @@ DOMAIN = '127.0.0.1:8000'  # local testda shunday
 # Email settigns
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 DEFAULT_FROM_EMAIL = 'noreply@example.com'
-DOMAIN = 'localhost:8000'  # agar deploy bo'lsa, o'zgartirasan
+DOMAIN = 'localhost:8000'  # agar deploy bo'lsa, o'zgartirish kk
 
 
 

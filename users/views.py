@@ -12,6 +12,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 
 from rest_framework_simplejwt.views import TokenObtainPairView
 from .serializers import CustomTokenObtainPairSerializer
+from .utils import send_confirmation_email
 
 
 class UserRegisterView(generics.CreateAPIView):
@@ -47,16 +48,16 @@ def confirm_email(request, uid, token):
 class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
 
-
 def register_view(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
             user.set_password(form.cleaned_data['password'])
-            user.is_active = True  # SMTP bo'lmasa, email tasdiqlashni vaqtincha o‘tkazib turamiz
-            user.save()
-            return redirect('login')
+            user.is_active = False  # Email tasdiqlanmaguncha aktiv emas
+            user.save()  # MUHIM! PK va token ishlashi uchun kerak
+            send_confirmation_email(user)  # Endi bu ishlaydi
+            return JsonResponse({'detail': 'Emailingizga tasdiqlovchi link yuborildi.'})
     else:
         form = RegisterForm()
     return render(request, 'users/register.html', {'form': form})
