@@ -18,8 +18,8 @@ class CustomUserManager(BaseUserManager):
     def create_superuser(self, email, username, password=None, **extra_fields):
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
-        extra_fields.setdefault('is_email_verified', True)  # ✅ BU JOY MUHIM
-        extra_fields.setdefault('is_active', True)  # ✅  BU joy ham muhim
+        extra_fields.setdefault('is_email_verified', True)  # BU JOY MUHIM
+        extra_fields.setdefault('is_active', True)  # BU joy ham muhim
 
         if extra_fields.get('is_staff') is not True:
             raise ValueError('Superuser must have is_staff=True.')
@@ -46,8 +46,6 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         return self.username
 
 
-
-# users/models.py (pastiga qo‘shamiz)
 class UserProfile(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='profile')
     first_name = models.CharField(max_length=50)
