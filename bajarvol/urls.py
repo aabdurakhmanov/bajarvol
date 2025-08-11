@@ -36,7 +36,7 @@ urlpatterns = [
 urlpatterns += [
     #docs
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'), # OpenAPI schema json uchun
-    path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'), # Swagger UI (interaktiv API testing sahifasi)
-    path('api/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),     # ReDoc UI (alternativ dizayn)
+    path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'), # Swagger UI
+    path('api/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),     # ReDoc UI
 
 ]

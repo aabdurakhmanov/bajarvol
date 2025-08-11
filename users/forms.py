@@ -28,7 +28,7 @@ class RegisterForm(forms.Form):
             email=self.cleaned_data['email'],
             username=self.cleaned_data['username'],
             password=self.cleaned_data['password'],
-            is_active=False  # <<< MUHIM! Email tasdiqlangunga qadar aktiv bo‘lmaydi
+            is_active=False  # <<< MUHIM! Email tasdiqlangunga qadar aktiv bo'lmaydi
         )
         user.set_password(self.cleaned_data['password'])
         if commit:
