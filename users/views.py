@@ -1,18 +1,19 @@
 # users/views.py
-from django.shortcuts import render, redirect
-from .forms import RegisterForm, CustomLoginForm
-from django.views.generic import FormView
-from django.contrib.auth import login
+from django.shortcuts import render
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from .forms import RegisterForm
+from django.contrib.auth import authenticate
 from django.contrib.auth.tokens import default_token_generator
 from django.http import JsonResponse
-from rest_framework import generics, permissions
+from rest_framework import generics, permissions, status
 from .models import CustomUser
-from .serializers import UserSerializer
+from .serializers import UserSerializer, LoginSerializer
 from rest_framework_simplejwt.tokens import RefreshToken
-
 from rest_framework_simplejwt.views import TokenObtainPairView
 from .serializers import CustomTokenObtainPairSerializer
 from .utils import send_confirmation_email
+
 
 
 class UserRegisterView(generics.CreateAPIView):
@@ -64,17 +65,11 @@ def register_view(request):
 
 
 
-class CustomLoginView(FormView):
-    template_name = 'users/login.html'
-    form_class = CustomLoginForm
+class CustomLoginView(generics.GenericAPIView):
+    serializer_class = LoginSerializer
+    permission_classes = [permissions.AllowAny]
 
-    def form_valid(self, form):
-        user = form.cleaned_data['user']
-        login(self.request, user)
-
-        # Token yaratish
-        refresh = RefreshToken.for_user(user)
-        response = redirect('user-detail')  # profile page nomi
-        response.set_cookie('access', str(refresh.access_token), httponly=True)
-        response.set_cookie('refresh', str(refresh), httponly=True)
-        return response
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        return Response(serializer.validated_data)

@@ -1,8 +1,9 @@
 # users/serializers.py
+from django.contrib.auth import authenticate
 from django.contrib.auth.password_validation import validate_password
 from rest_framework import serializers
 from .models import CustomUser, UserProfile
-
+from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework.exceptions import AuthenticationFailed
 
@@ -63,3 +64,28 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
             raise AuthenticationFailed("Email hali tasdiqlanmagan.")
 
         return data
+
+
+
+class LoginSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    password = serializers.CharField(write_only=True)
+
+    def validate(self, data):
+        email = data.get("email")
+        password = data.get("password")
+
+        user = authenticate(email=email, password=password)
+        if not user:
+            raise serializers.ValidationError("Email yoki parol noto'g'ri!")
+
+        refresh = RefreshToken.for_user(user)
+        return {
+            "refresh": str(refresh),
+            "access": str(refresh.access_token),
+            "user": {
+                "id": user.id,
+                "email": user.email,
+                "is_email_verified": user.is_email_verified
+            }
+        }
