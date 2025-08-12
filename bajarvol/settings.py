@@ -35,8 +35,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     #apps
-    'users.apps.UsersConfig',
-    'tasks.apps.TasksConfig',
+#    'users.apps.UsersConfig',
+#    'tasks.apps.TasksConfig',
+    'apps.users',
+    'apps.tasks',
 
     'django_recaptcha',
     'django_extensions',

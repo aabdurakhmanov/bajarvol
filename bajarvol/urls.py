@@ -25,8 +25,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     #captcha
     #apps
-    path('api/users/', include('users.urls')),
-    path('api/tasks/', include('tasks.urls')),
+    path('api/users/', include('apps.users.urls')),
+    path('api/tasks/', include('apps.tasks.urls')),
 
     #jwt
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'), # login
