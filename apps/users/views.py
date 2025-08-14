@@ -1,15 +1,12 @@
 # users/views.py
 from django.shortcuts import render
-from rest_framework.views import APIView
 from rest_framework.response import Response
 from .forms import RegisterForm
-from django.contrib.auth import authenticate
 from django.contrib.auth.tokens import default_token_generator
 from django.http import JsonResponse
-from rest_framework import generics, permissions, status
+from rest_framework import generics, permissions
 from .models import CustomUser
 from .serializers import UserSerializer, LoginSerializer
-from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.views import TokenObtainPairView
 from .serializers import CustomTokenObtainPairSerializer
 from .utils import send_confirmation_email

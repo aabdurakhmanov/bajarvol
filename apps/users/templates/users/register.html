@@ -1,9 +1,92 @@
 <!-- templates/users/register.html -->
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Ro'yxatdan o'tish</button>
-</form>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auth Forms</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #4e54c8, #8f94fb);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            width: 350px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            outline: none;
+            font-size: 14px;
+        }
+        input:focus {
+            border-color: #4e54c8;
+            box-shadow: 0px 0px 5px rgba(78, 84, 200, 0.5);
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #4e54c8;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #3c40a0;
+        }
+        .switch {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+        .switch a {
+            color: #4e54c8;
+            text-decoration: none;
+        }
+        .switch a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
 
-<!-- reCAPTCHA JS kodi -->
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <!-- Register Form -->
+    <div class="container" id="registerForm">
+        <h2>Ro'yxatdan o'tish | Register</h2>
+        <form method="post">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit">Ro'yxatdan o'tish</button>
+        </form>
+        <div class="switch">
+            Already have an account? <a href="/login/" onclick="showLogin()">Login</a>
+        </div>
+    </div>
+
+    <script>
+        function showLogin() {
+            document.getElementById("loginForm").style.display = "block";
+        }
+    </script>
+    <!-- reCAPTCHA JS kodi -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+</body>
+</html>

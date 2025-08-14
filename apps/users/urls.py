@@ -10,4 +10,5 @@ urlpatterns = [
     path('confirm-email/<int:uid>/<str:token>/', confirm_email, name='confirm-email'),
 #    path('login/', CustomTokenObtainPairView.as_view(), name='login'),
     path('login/', CustomLoginView.as_view(), name='user-login'),
+
 ]
