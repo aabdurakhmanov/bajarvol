@@ -6,6 +6,7 @@ from .models import CustomUser, UserProfile
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework.exceptions import AuthenticationFailed
+from .utils import send_confirmation_email
 
 class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
@@ -31,12 +32,13 @@ class UserSerializer(serializers.ModelSerializer):
 
         user = CustomUser.objects.create(**validated_data)
         user.set_password(password)
+        user.is_active = False  # email tasdiqlangandan keyin aktiv bo‘ladi
         user.save()
 
-        UserProfile.objects.filter(user=user).update(**profile_data)
+        # Agar profile avtomatik yaratilib qolmasa:
+        UserProfile.objects.create(user=user, **profile_data)
 
         # Tasdiqlovchi email yuboramiz
-        from .utils import send_confirmation_email
         send_confirmation_email(user)
 
         return user
@@ -62,7 +64,6 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
 
         if not self.user.is_email_verified:
             raise AuthenticationFailed("Email hali tasdiqlanmagan.")
-
         return data
 
 
