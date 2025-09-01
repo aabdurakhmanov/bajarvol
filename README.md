@@ -124,24 +124,8 @@ Redoc UI: http://127.0.0.1:8000/api/redoc/
 
 
 ## 📸 Ekran rasmlari (Screenshots)
-https://user-images.githubusercontent.com/76531073/178923741-80e6723f-2454-430f-8431-f299da22ff08.png
-### 📝 Ro‘yxatdan o‘tish (Register)
-![Register](https://user-images.githubusercontent.com/76531073/178923741-80e6723f-2454-430f-8431-f299da22ff08.png
+![My Image](<img width="1365" height="860" alt="register-page" src="https://github.com/user-attachments/assets/cb573a79-038e-4725-8b14-59072349cec8" />
 )
-https://user-images.githubusercontent.com/76531073/178923741-80e6723f-2454-430f-8431-f299da22ff08.png
-### 🔑 Login
-![Login](<img width="1366" height="683" alt="login" src="https://github.com/user-attachments/assets/50abd561-4091-40c0-8fdc-590e72a716bd" />
-)
-https://user-images.githubusercontent.com/76531073/178923741-80e6723f-2454-430f-8431-f299da22ff08.png
-### 👤 Profil
-![Profile](<img width="1365" height="675" alt="design" src="https://github.com/user-attachments/assets/dab69967-4235-4682-91f6-73210aaeb9ef" />
-)
-https://user-images.githubusercontent.com/76531073/178923741-80e6723f-2454-430f-8431-f299da22ff08.png
-
-### 👤 Profil-me
-![Profile](<img width="1365" height="678" alt="user-profile-bingo-djangoadminpanel png" src="https://github.com/user-attachments/assets/4b4ff00f-bb21-4823-aea4-2be8d3de3817" />
-)
-https://user-images.githubusercontent.com/76531073/178923741-80e6723f-2454-430f-8431-f299da22ff08.png
 
 [![Django Rest Framework](https://img.shields.io/badge/DRF-Django%20Rest%20Framework-red?style=flat&logo=django)](https://www.django-rest-framework.org/)
 [![JWT](https://img.shields.io/badge/Auth-JWT-green?style=flat&logo=jsonwebtokens)](https://jwt.io/)
