@@ -124,8 +124,11 @@ Redoc UI: http://127.0.0.1:8000/api/redoc/
 
 
 ## 📸 Ekran rasmlari (Screenshots)
-![My Image](<img width="1365" height="860" alt="register-page" src="https://github.com/user-attachments/assets/cb573a79-038e-4725-8b14-59072349cec8" />
-)
+![ro'yxatdan o'tish | register](imgs/register-page.png)
+![tizimga kirish | login](imgs/login.png)
+![profil | profile](imgs/design.png)
+![shaxsiy profil | profile\me](imgs/user-profile-bingo-djangoadminpanel.png)
+
 
 [![Django Rest Framework](https://img.shields.io/badge/DRF-Django%20Rest%20Framework-red?style=flat&logo=django)](https://www.django-rest-framework.org/)
 [![JWT](https://img.shields.io/badge/Auth-JWT-green?style=flat&logo=jsonwebtokens)](https://jwt.io/)
